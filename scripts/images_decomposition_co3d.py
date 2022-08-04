@@ -24,7 +24,7 @@ cosy_base = Path('datasets') / 'cosy'
 photos_base = Path('datasets') / 'photos'
 
 
-category = 'hydrant'
+category = 'photos'
 
 if category != 'cosy' and category != 'photos':
     test_path = co3d_base / f'extracted_{category}' / 'imgs_cropped' / 'val'
@@ -64,10 +64,10 @@ b_max = 1.5
 
 p_reconstruction = True
 p_normal = True
-p_depth = False
+p_depth = True
 p_bump = False
 p_normal_noref = False
-p_diff = True
+p_diff = False
 p_spec = True
 p_input = True
 p_albedo = True
@@ -79,7 +79,7 @@ p_lr_normal = False
 resolution = 256
 
 category_indices = {
-    'photos': list(range(26)),
+    'photos': list(range(40)),
     'hydrant': [5, 19, 28, 43, 65, 100, 117, 119, 143, 149, 169, 188, 202, 210, 229, 258, 315, 332, 349, 355, 373, 393, 408, 417, 436, 457, 472],
     'toybus': [11, 26, 59, 100, 134],
     'toytruck': [4, 110, 118, 315],
@@ -106,7 +106,7 @@ category_indices_figure = {
 
 dry_run = False
 
-indices = category_indices[category][-2:]
+indices = category_indices[category]
 
 
 class DummyTrainer:
@@ -201,7 +201,7 @@ def main():
                     elif category == 'cosy':
                         mask = model.data_dict['lr_recon_im_mask'][0, 0].cpu().numpy() > 0
                     elif category == 'photos':
-                        mask_path = test_path / 'masks' / 'val' f'{index:06d}.png'
+                        mask_path = test_path / 'masks' / 'val' / f'{index:06d}.png'
                         if mask_path.exists():
                             mask = utils.load_array(str(mask_path))[:, :, 0] > .0
                         else:
