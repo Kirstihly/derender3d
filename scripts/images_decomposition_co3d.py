@@ -79,7 +79,7 @@ p_lr_normal = False
 resolution = 256
 
 category_indices = {
-    'photos': list(range(40)),
+    'photos': list(range(60)),
     'hydrant': [5, 19, 28, 43, 65, 100, 117, 119, 143, 149, 169, 188, 202, 210, 229, 258, 315, 332, 349, 355, 373, 393, 408, 417, 436, 457, 472],
     'toybus': [11, 26, 59, 100, 134],
     'toytruck': [4, 110, 118, 315],
